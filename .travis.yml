@@ -14,3 +14,9 @@ after_sucess:
   - docker build -t SunLee128/multi-nginx ./nginx
   - docker build -t SunLee128/multi-server ./server
   - docker build -t SunLee128/multi-worker ./worker
+
+  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" -- pasword-stdin
+  - docker push SunLee128/multi-client
+  - docker push SunLee128/multi-nginx
+  - docker push SunLee128/multi-server
+  - docker push SunLee128/multi-worker
