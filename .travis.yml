@@ -4,10 +4,10 @@ services:
   - docker
 
 before_install:
-  - docker build -t sunlee/multi-docker-deployment -f ./client/Dockerfile.dev ./client
+  - docker build -t sunlee/multi-docker-example -f ./client/Dockerfile.dev ./client
 
 script: 
-  - docker run -e CI=true sunlee/multi-docker-deployment npm test -- --coverage
+  - docker run -e CI=true sunlee/multi-docker-example npm test -- --coverage
 
 after_sucess: 
   - docker build -t sunlee/multi-client ./client
