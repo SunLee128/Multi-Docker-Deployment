@@ -1,0 +1,16 @@
+sudo: required
+language: generic
+services: 
+  - docker
+
+before_install:
+  - docker build -t SunLee128/Multi-Docker-Deployment -f ./client/Dockerfile.dev ./client
+
+script: 
+  - docker run -e CI=true SunLee128/Multi-Docker-Deployment npm test -- --coverage
+
+after_sucess: 
+  - docker build -t SunLee128/multi-client ./client
+  - docker build -t SunLee128/multi-nginx ./nginx
+  - docker build -t SunLee128/multi-server ./server
+  - docker build -t SunLee128/multi-worker ./worker
