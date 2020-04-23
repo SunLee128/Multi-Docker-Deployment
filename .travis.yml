@@ -10,13 +10,13 @@ script:
   - docker run -e CI=true sunlee/multi-docker-deployment npm test -- --coverage
 
 after_sucess: 
-  - docker build -t SunLee128/multi-client ./client
-  - docker build -t SunLee128/multi-nginx ./nginx
-  - docker build -t SunLee128/multi-server ./server
-  - docker build -t SunLee128/multi-worker ./worker
+  - docker build -t sunlee/multi-client ./client
+  - docker build -t sunlee/multi-nginx ./nginx
+  - docker build -t sunlee/multi-server ./server
+  - docker build -t sunlee/multi-worker ./worker
 
   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" -- pasword-stdin
-  - docker push SunLee128/multi-client
-  - docker push SunLee128/multi-nginx
-  - docker push SunLee128/multi-server
-  - docker push SunLee128/multi-worker
+  - docker push sunlee/multi-client
+  - docker push sunlee/multi-nginx
+  - docker push sunlee/multi-server
+  - docker push sunlee/multi-worker
